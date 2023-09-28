@@ -12,16 +12,8 @@ const auth = require("./Routers/Auth")
 const student = require("./Routers/student")
 const hod = require("./Routers/Hod")
 
+pp.use(cors())
 
-app.use(
-  cors({
-    // origin: "http://localhost:5173",
-    origin: "https://gpmfeedback.netlify.app",
-    methods: ["POST", "GET", "PUT", "DELETE"],
-    credentials: true,
-    optionSuccessStatus: 200,
-  })
-);
 
 app.use(express.json());
 
