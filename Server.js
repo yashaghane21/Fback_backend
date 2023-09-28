@@ -15,7 +15,8 @@ const hod = require("./Routers/Hod")
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    // origin: "http://localhost:5173",
+    origin: "https://gpmfeedback.netlify.app/",
     methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true,
     optionSuccessStatus: 200,
