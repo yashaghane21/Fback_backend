@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 app.use(express.json());
 const cors = require("cors")
 require('dotenv').config();
-
+app.use(cors());
+app.use(express.json());
 
 
 
@@ -12,10 +13,6 @@ const auth = require("./Routers/Auth")
 const student = require("./Routers/student")
 const hod = require("./Routers/Hod")
 
-pp.use(cors())
-
-
-app.use(express.json());
 
 app.use("/api/v1", auth)
 app.use("/api/v2", hod)
