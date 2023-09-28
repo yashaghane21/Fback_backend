@@ -29,7 +29,6 @@ app.use("/api/v2", hod)
 app.use("/api/v3", student)
 
 
-// const mongoDB = "mongodb+srv://bytedevs2121:ckE8KmiAgfTst4AO@cluster0.szpyuui.mongodb.net/?retryWrites=true&w=majority";
 
 
 const mongoUrl = process.env.MONGODB_URL;
