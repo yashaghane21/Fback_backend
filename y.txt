@@ -1,0 +1,36 @@
+   1> dept creation:- (admin)              http://localhost:5000/api/v2/department
+   
+   2>register                                http://localhost:5000/api/v1/register
+
+   3>login                                   http://localhost:5000/api/v1/login   yash12@gmail.com
+
+
+   hod  :- yashaghane21@gmail.com
+
+   pricipal :- nitiket@gmail.com
+
+
+  1)  add questions:                             http://localhost:5000/api/v2/question
+
+  2)  add course 
+   
+   http://localhost:5000/api/v2/course  
+        {
+  "name":"Basic mathematics",
+  "department":"64dbc27b25871abf6b82b27c",
+  "sem":"64dbc5db25871abf6b82b2e4",
+  "teacher":"vinod "
+}
+
+
+3) get courses by sem 
+
+http://localhost:5000/api/v3/subjects/64dbc5db25871abf6b82b2e4
+
+
+
+4) get feedbacks   http://localhost:5000/api/v2/feedback/64dbc5db25871abf6b82b2e4  semid
+
+5 http://localhost:5000/api/v2/feedbacksub/64f98cd0cba7e09867717852 get fedbak by subject id 
+
+http://localhost:5000/api/v2/countsA/64dbc5db25871abf6b82b2e4   semwise feedback countsA
