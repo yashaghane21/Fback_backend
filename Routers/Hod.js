@@ -413,7 +413,23 @@ router.delete("/ecqdel/:id", async (req, res) => {
     return res.status(200).send({
         success: true,
         response,
-      
+
     })
 });
+
+router.get("/feedbackby/:dep", async (req, res) => {
+    const { dep } = req.params;
+    try {
+        const feedback = await ecfmodel.find({ department: dep }).populate("student").populate("course");
+        return res.status(200).send({
+            feedback
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send({
+            error: "Internal Server Error"
+        });
+    }
+});
+
 module.exports = router;
