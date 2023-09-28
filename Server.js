@@ -3,7 +3,9 @@ const app = express();
 const mongoose = require("mongoose");
 app.use(express.json());
 const cors = require("cors")
-// app.use(cors());
+require('dotenv').config();
+
+
 
 
 const auth = require("./Routers/Auth")
@@ -27,17 +29,18 @@ app.use("/api/v2", hod)
 app.use("/api/v3", student)
 
 
-const mongoDB = "mongodb+srv://bytedevs2121:ckE8KmiAgfTst4AO@cluster0.szpyuui.mongodb.net/?retryWrites=true&w=majority";
+// const mongoDB = "mongodb+srv://bytedevs2121:ckE8KmiAgfTst4AO@cluster0.szpyuui.mongodb.net/?retryWrites=true&w=majority";
 
-mongoose.connect(mongoDB, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+
+const mongoUrl = process.env.MONGODB_URL;
+console.log(process.env.MONGODB_URL)
+
+mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    console.log(" Database coonection succsess");
+    console.log('Connected to MongoDB');
   })
-  .catch((e) => {
-    console.log(e);
+  .catch(error => {
+    console.error('Error connecting to MongoDB:', error);
   });
 
 
