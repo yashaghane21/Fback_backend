@@ -417,7 +417,7 @@ router.delete("/ecqdel/:id", async (req, res) => {
     })
 });
 
-router.post("/feedbackby", async (req, res) => {
+router.post("/ecfeedbackby", async (req, res) => {
     const { dep } = req.body;
     console.log(dep)
     try {
