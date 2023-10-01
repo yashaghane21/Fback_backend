@@ -417,8 +417,9 @@ router.delete("/ecqdel/:id", async (req, res) => {
     })
 });
 
-router.get("/feedbackby/:dep", async (req, res) => {
-    const { dep } = req.params;
+router.post("/feedbackby", async (req, res) => {
+    const { dep } = req.body;
+    console.log(dep)
     try {
         const feedback = await ecfmodel.find({ department: dep }).populate("student").populate("course");
         return res.status(200).send({
