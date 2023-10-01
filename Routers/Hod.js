@@ -421,7 +421,7 @@ router.post("/ecfeedbackby", async (req, res) => {
     const { dep } = req.body;
     console.log(dep)
     try {
-        const feedback = await ecfmodel.find({ department: dep }).populate("student").populate("course");
+        const feedback = await ecfmodel.find({ department: dep }).populate("student")
         return res.status(200).send({
             feedback
         });
