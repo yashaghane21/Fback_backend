@@ -8,6 +8,7 @@ const fmodel = require("../Models/Feedback");
 const teachmodel = require("../Models/Teacher")
 const usermodel = require("../Models/User")
 const ecfmodel = require("../Models/Ecquestions")
+const ecfemodel = require("../Models/ECfback")
 // const fmodel = require("../Models/Feedback")
 
 router.post("/department", async (req, res) => {
@@ -421,7 +422,7 @@ router.post("/ecfeedbackby", async (req, res) => {
     const { dep } = req.body;
     console.log(dep)
     try {
-        const feedback = await ecfmodel.find({ department: dep }).populate("student")
+        const feedback = await ecfemodel.find({ department: dep }).populate("student")
         return res.status(200).send({
             feedback
         });
