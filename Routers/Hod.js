@@ -436,10 +436,10 @@ router.post("/ecfeedbackby", async (req, res) => {
 
 
 router.get("/ecfback/:id", async (req, res) => {
-    const { id } = req.params;
+    const { id } = req.params
 
     try {
-        const fback = await ecfmodel.findById(id).populate("student").populate("feedback.question");
+        const fback = await ecfemodel.findById(id).populate("student").populate("feedback.question");
 
         if (!fback) {
             return res.status(404).send({
