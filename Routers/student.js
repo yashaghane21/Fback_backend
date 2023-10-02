@@ -108,7 +108,7 @@ router.get("/ecques", async (req, res) => {
 
 
 router.post('/ecfeedback', async (req, res) => {
-    const { feedback, department ,student } = req.body;
+    const { feedback, department, student } = req.body;
 
     try {
         const newFeedback = new ecmodel({ department, student, feedback });
