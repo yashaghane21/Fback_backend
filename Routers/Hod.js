@@ -434,4 +434,30 @@ router.post("/ecfeedbackby", async (req, res) => {
     }
 });
 
+
+router.get("/ecfback/:id", async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const fback = await ecfmodel.findById(id).populate("student").populate("feedback.question");
+
+        if (!fback) {
+            return res.status(404).send({
+                message: "Feedback not found"
+            });
+        }
+
+        return res.status(200).send({
+            fback
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send({
+            message: "Internal Server Error"
+        });
+    }
+});
+
+
+
 module.exports = router;
