@@ -9,6 +9,7 @@ const teachmodel = require("../Models/Teacher")
 const usermodel = require("../Models/User")
 const ecfmodel = require("../Models/Ecquestions")
 const ecfemodel = require("../Models/ECfback")
+const bcrypt = require("bcrypt")
 // const fmodel = require("../Models/Feedback")
 
 router.post("/department", async (req, res) => {
@@ -458,6 +459,19 @@ router.get("/ecfback/:id", async (req, res) => {
     }
 });
 
+
+router.post("/addhod", async (req, res) => {
+    const { name, email, phone, department, password } = req.body
+    const hashedpass = await bcrypt.hash(password, 10)
+    const hod = new usermodel({
+        name: name, email: email, phone: phone, department: department
+        , role: 1, password: hashedpass
+    });
+    await hod.save();
+    return res.status(200).send({
+        hod
+    });
+})
 
 
 

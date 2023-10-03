@@ -126,8 +126,8 @@ router.post("/getsembydep", async (req, res) => {
         success: true,
         message: "done",
         sems
-    })
-})
+    });
+});
 
 
 

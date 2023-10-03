@@ -129,5 +129,5 @@ router.get("/hods", async (req, res) => {
         success: true,
         hods
     })
-})
+});
 module.exports = router;
