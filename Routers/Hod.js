@@ -464,13 +464,13 @@ router.post("/addhod", async (req, res) => {
     const { name, email, phone, department, password } = req.body
     const hashedpass = await bcrypt.hash(password, 10)
     const hod = new usermodel({
-        name: name, email: email, phone: phone, department: department
+        name, email, phone, department
         , role: 1, password: hashedpass
     });
     await hod.save();
     return res.status(200).send({
         hod,
-        success:true
+        success: true
     });
 })
 
