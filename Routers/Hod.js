@@ -469,7 +469,8 @@ router.post("/addhod", async (req, res) => {
     });
     await hod.save();
     return res.status(200).send({
-        hod
+        hod,
+        success:true
     });
 })
 
