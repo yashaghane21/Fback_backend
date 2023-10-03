@@ -124,7 +124,7 @@ router.post('/ecfeedback', async (req, res) => {
 
 
 router.get("/hods", async (req, res) => {
-    const hods = await usermodel.find({ role: 2 });
+    const hods = await usermodel.find({ role:1 });
     return res.status(200).send({
         success: true,
         hods
