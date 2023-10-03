@@ -110,7 +110,7 @@ router.post("/login", async (req, res) => {               // http://localhost:50
 
 
 router.get("/department", async (req, res) => {
-    const departments = await deptmodel.find({})
+    const departments = await deptmodel.find({}).populate("hod")
     return res.status(200).send({
         success: true,
         message: "done",
