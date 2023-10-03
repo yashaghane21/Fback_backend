@@ -6,7 +6,7 @@ const fmodel = require("../Models/Feedback")
 const umodel = require("../Models/User")
 const ecfmodel = require("../Models/Ecquestions")
 const ecmodel = require("../Models/ECfback")
-
+const usermodel = require("../Models/User")
 
 router.get("/ques", async (req, res) => {
     try {
@@ -122,4 +122,12 @@ router.post('/ecfeedback', async (req, res) => {
     }
 });
 
+
+router.get("/hods", async (req, res) => {
+    const hods = await usermodel.find({ role: 2 });
+    return res.status(200).send({
+        success: true,
+        hods
+    })
+})
 module.exports = router;
