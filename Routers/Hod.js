@@ -463,6 +463,31 @@ router.get("/ecfback/:id", async (req, res) => {
 router.post("/addhod", async (req, res) => {
     try {
         const { name, email, phone, department, password } = req.body;
+        if (!validator.isEmail(email) || !validator.isLength(email, { min: 3, max: 320 })) {
+            return res.status(400).send({
+                success: false,
+                message: "Invalid email"
+            });
+        }
+        if (!validator.isLength(phone, { min: 10, max: 10 })) {
+            return res.status(400).send({
+                success: false,
+                message: "Phone number should be 10 digits"
+            });
+        }
+        if (!validator.isLength(password, { min: 6 })) {
+            return res.status(400).send({
+                success: false,
+                message: "password shoul be at least 6 digits"
+            });
+        }
+        const suser = await usermodel.findOne({ email })
+        if (suser) {
+            return res.status(400).send({
+                success: false,
+                message: "user already exist"
+            })
+        }
         const hashedpass = await bcrypt.hash(password, 10);
         const hod = new usermodel({
             name, email, phone, department, role: 1, password: hashedpass
