@@ -10,6 +10,7 @@ const usermodel = require("../Models/User")
 const ecfmodel = require("../Models/Ecquestions")
 const ecfemodel = require("../Models/ECfback")
 const bcrypt = require("bcrypt")
+const validator = require("validator")
 // const fmodel = require("../Models/Feedback")
 
 router.post("/department", async (req, res) => {
