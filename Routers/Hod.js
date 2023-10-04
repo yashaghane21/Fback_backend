@@ -501,5 +501,13 @@ router.post("/addhod", async (req, res) => {
 });
 
 
+router.put("/uphod", async (req, res) => {
+    const { id, value } = req.body
+    const updated = await departmentmodel.findByIdAndUpdate(id, {
+        hod: value
+    });
+    return res.status(201).send({ success: true, updated });
+
+})
 
 module.exports = router;
