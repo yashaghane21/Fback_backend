@@ -512,7 +512,7 @@ router.put("/uphod", async (req, res) => {
 
 
 
-router.get("/feedbackby", async (req, res) => {
+router.post("/feedbackby", async (req, res) => {
     const { dep, sem1, sem2, sem3, sem4, sem5, sem6 } = req.body
     try {
 
