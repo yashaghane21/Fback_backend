@@ -510,4 +510,58 @@ router.put("/uphod", async (req, res) => {
 
 })
 
+
+
+router.get("/feedbackby", async (req, res) => {
+    const { dep, sem1, sem2, sem3, sem4, sem5, sem6 } = req.body
+    try {
+
+        const goodsem1 = await fmodel.find({ "feedback.answer": "good", department: dep, sem: sem1 }).count()
+        const goodsem2 = await fmodel.find({ "feedback.answer": "good", department: dep, sem: sem2 }).count()
+        const goodsem3 = await fmodel.find({ "feedback.answer": "good", department: dep, sem: sem3 }).count()
+        const goodsem4 = await fmodel.find({ "feedback.answer": "good", department: dep, sem: sem4 }).count()
+        const goodsem5 = await fmodel.find({ "feedback.answer": "good", department: dep, sem: sem5 }).count()
+        const goodsem6 = await fmodel.find({ "feedback.answer": "good", department: dep, sem: sem6 }).count()
+
+
+        const responseData = [
+            {
+                name: "Sem1",
+                uv: goodsem1
+            },
+            {
+                name: "Sem2",
+                uv: goodsem2
+            },
+            {
+                name: "Sem3",
+                uv: goodsem3
+            },
+            {
+                name: "Sem4",
+                uv: goodsem4
+            },
+            {
+                name: "Sem5",
+                uv: goodsem5
+            },
+            {
+                name: "Sem6",
+                uv: goodsem6
+            }
+        ];
+
+
+        return res.status(200).send({
+            responseData
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send({
+            error: "Internal Server Error"
+        });
+    }
+});
+
+
 module.exports = router;
