@@ -527,27 +527,27 @@ router.post("/feedbackby", async (req, res) => {
         const responseData = [
             {
                 name: "Sem1",
-                uv: goodsem1
+                good: goodsem1
             },
             {
                 name: "Sem2",
-                uv: goodsem2
+                good: goodsem2
             },
             {
                 name: "Sem3",
-                uv: goodsem3
+                good: goodsem3
             },
             {
                 name: "Sem4",
-                uv: goodsem4
+                good: goodsem4
             },
             {
                 name: "Sem5",
-                uv: goodsem5
+                good: goodsem5
             },
             {
                 name: "Sem6",
-                uv: goodsem6
+                good: goodsem6
             }
         ];
 
