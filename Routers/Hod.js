@@ -563,5 +563,28 @@ router.post("/feedbackby", async (req, res) => {
     }
 });
 
+router.delete("/fac/:id", async (req, res) => {
+    const { id } = req.params
+    const response = await teachmodel.findByIdAndDelete(id)
+    return res.status(200).send({
+        response,
+        success: true
+    })
+});
+
+
+router.put("/updateteacher", async (req, res) => {
+    const { name, email, phone, education, id } = req.body
+    const ut = await teachmodel.findByIdAndUpdate(id, {
+        name: name, email: email, phone: phone, education: education
+    });
+    return res.status(200).send({
+        success: true,
+        ut
+    })
+});
+
+
+
 
 module.exports = router;
