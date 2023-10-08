@@ -572,19 +572,27 @@ router.delete("/delfac/:id", async (req, res) => {
     })
 });
 
-
 router.put("/updateteacher", async (req, res) => {
-    const { name, email, phone, education, id } = req.body
-    const ut = await teachmodel.findByIdAndUpdate(id, {
-        name: name, email: email, phone: phone, education: education
-    });
-    return res.status(200).send({
-        success: true,
-        ut
-    })
+    try {
+        const { name, email, phone, education, id } = req.body;
+        
+        const updatedTeacher = await teachmodel.findByIdAndUpdate(id, {
+            name: name, email: email, phone: phone, education: education
+        });
+
+      
+        return res.status(200).send({
+            success: true,
+            updatedTeacher
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send({
+            success: false,
+            message: "Internal server error"
+        });
+    }
 });
-
-
 
 
 module.exports = router;
