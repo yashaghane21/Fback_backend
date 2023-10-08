@@ -315,7 +315,7 @@ router.post("/searchsub", async (req, res) => {
 
 router.post("/students", async (req, res) => {
     const { dep } = req.body
-    const students = await usermodel.find({ role: 0, dep: dep });
+    const students = await usermodel.find({ role: 0, department: dep });
     return res.status(200).send({
         students
     })
