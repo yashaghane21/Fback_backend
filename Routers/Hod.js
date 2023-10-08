@@ -570,4 +570,13 @@ router.put("/updateteacher", async (req, res) => {
 });
 
 
+router.delete("/studel/:id", async (req, res) => {
+    const { id } = req.params
+    const response = await usermodel.findByIdAndDelete(id)
+    return res.status(200).send({
+        response,
+        success: true
+    })
+});
+
 module.exports = router;
