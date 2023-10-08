@@ -7,6 +7,19 @@ const deptmodel = require("../Models/Department")
 const semmodel = require("../Models/Sem")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
+const dotenv = require("dotenv");
+const nodemailer = require("nodemailer");
+dotenv.config();
+
+let transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: process.env.SMTP_PORT,
+    secure: false,
+    auth: {
+        user: process.env.SMTP_MAIL,
+        pass: process.env.SMTP_PASSWORD,
+    },
+});
 
 router.post("/register", async (req, res) => {                                // http://localhost:5000/api/v3/register
     const { name, email, Enroll, password, phone, department, sem } = req.body
@@ -29,6 +42,23 @@ router.post("/register", async (req, res) => {                                //
             message: "password shoul be at least 6 digits"
         });
     }
+    const subject = "About"
+    const text = "welocome to feedbacker"
+    var mailOptions = {
+        from: process.env.SMTP_MAIL,
+        to: email,
+        subject: subject,
+        text: message,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log("Email sent successfully!");
+        }
+    });
+
     const suser = await usermodel.findOne({ email })
     if (suser) {
         return res.status(400).send({
