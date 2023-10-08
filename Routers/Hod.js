@@ -371,10 +371,11 @@ router.post("/searchstud", async (req, res) => {
     }
 })
 
-router.get("/getdata", async (req, res) => {
-    const totalstudents = await usermodel.find({ role: 0 }).count();
-    const tfeedbacks = await fmodel.find({}).count()
-    const tteacher = await teachmodel.find({}).count()
+router.post("/getdata", async (req, res) => {
+    const { dep } = req.body
+    const totalstudents = await usermodel.find({ role: 0, department: dep }).count();
+    const tfeedbacks = await fmodel.find({ department: dep }).count()
+    const tteacher = await teachmodel.find({ department: dep }).count()
     return res.status(200).send({
         totalstudents,
         tfeedbacks,
