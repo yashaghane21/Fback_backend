@@ -42,22 +42,6 @@ router.post("/register", async (req, res) => {                                //
             message: "password shoul be at least 6 digits"
         });
     }
-    const subject = "About"
-    const text = "welocome to feedbacker"
-    var mailOptions = {
-        from: process.env.SMTP_MAIL,
-        to: email,
-        subject: subject,
-        text: message,
-    };
-
-    transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-            console.log(error);
-        } else {
-            console.log("Email sent successfully!");
-        }
-    });
 
     const suser = await usermodel.findOne({ email })
     if (suser) {
@@ -70,6 +54,24 @@ router.post("/register", async (req, res) => {                                //
     const hashedpass = await bcrypt.hash(password, 10)
     const user = new usermodel({ name, email, Enroll, password: hashedpass, phone, department, sem });
     const userd = await user.save();
+    const subject = "About"
+    const text = "welocome to feedbacker"
+
+    var mailOptions = {
+        from: process.env.SMTP_MAIL,
+        to: email,
+        subject: subject,
+        text: text,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log("Email sent successfully!");
+        }
+    });
+
     return res.status(200).send({
         success: true,
         message: "done",
