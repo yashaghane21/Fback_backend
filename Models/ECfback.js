@@ -4,7 +4,7 @@ const ecfschema = new mongoose.Schema({
     department: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Department"
-    } , student: {
+    }, student: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "user"
     },
@@ -23,6 +23,10 @@ const ecfschema = new mongoose.Schema({
         },
     ],
     timestamp: { type: Date, default: Date.now },
+    year: {
+        type: Number,
+        default: new Date().getFullYear()
+    },
 });
 
 const ecf = mongoose.model("ecf", ecfschema);

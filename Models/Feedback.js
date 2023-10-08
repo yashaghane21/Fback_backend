@@ -29,6 +29,10 @@ const feedbackschema = new mongoose.Schema({
         },
     ],
     timestamp: { type: Date, default: Date.now },
+    year: {
+        type: Number,
+        default: new Date().getFullYear() 
+      },
 });
 
 const feedback = mongoose.model("feedback", feedbackschema);
