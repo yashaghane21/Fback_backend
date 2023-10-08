@@ -82,11 +82,12 @@ router.post('/feedback', async (req, res) => {
 
 router.post("/user", async (req, res) => {
     const { id } = req.body
-    const user = await umodel.findById(id).populate("sem")
+    const user = await umodel.findById(id).populate(["sem", "department"])
     return res.status(200).send({
         user
     })
 })
+
 
 router.get("/ecques", async (req, res) => {
     try {
@@ -124,7 +125,7 @@ router.post('/ecfeedback', async (req, res) => {
 
 
 router.get("/hods", async (req, res) => {
-    const hods = await usermodel.find({ role:1 });
+    const hods = await usermodel.find({ role: 1 });
     return res.status(200).send({
         success: true,
         hods
