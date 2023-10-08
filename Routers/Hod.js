@@ -514,12 +514,12 @@ router.post("/goodfeedbackby", async (req, res) => {
     const { dep, sem1, sem2, sem3, sem4, sem5, sem6 } = req.body;
 
     try {
-        const goodsem1 = await fmodel.countDocuments({ "feedback.answer": "good", department: dep, sem: sem1 });
-        const goodsem2 = await fmodel.countDocuments({ "feedback.answer": "good", department: dep, sem: sem2 });
-        const goodsem3 = await fmodel.countDocuments({ "feedback.answer": "good", department: dep, sem: sem3 });
-        const goodsem4 = await fmodel.countDocuments({ "feedback.answer": "good", department: dep, sem: sem4 });
-        const goodsem5 = await fmodel.countDocuments({ "feedback.answer": "good", department: dep, sem: sem5 });
-        const goodsem6 = await fmodel.countDocuments({ "feedback.answer": "good", department: dep, sem: sem6 });
+        const goodsem1 = await fmodel.countDocuments({ "feedback.answer": "good😃", department: dep, sem: sem1 });
+        const goodsem2 = await fmodel.countDocuments({ "feedback.answer": "good😃", department: dep, sem: sem2 });
+        const goodsem3 = await fmodel.countDocuments({ "feedback.answer": "good😃", department: dep, sem: sem3 });
+        const goodsem4 = await fmodel.countDocuments({ "feedback.answer": "good😃", department: dep, sem: sem4 });
+        const goodsem5 = await fmodel.countDocuments({ "feedback.answer": "good😃", department: dep, sem: sem5 });
+        const goodsem6 = await fmodel.countDocuments({ "feedback.answer": "good😃", department: dep, sem: sem6 });
 
         const responseData = [
             { name: "Sem1", uv: goodsem1 },
@@ -550,12 +550,12 @@ router.delete("/delfac/:id", async (req, res) => {
 router.put("/updateteacher", async (req, res) => {
     try {
         const { name, email, phone, education, id } = req.body;
-        
+
         const updatedTeacher = await teachmodel.findByIdAndUpdate(id, {
             name: name, email: email, phone: phone, education: education
         });
 
-      
+
         return res.status(200).send({
             success: true,
             updatedTeacher
