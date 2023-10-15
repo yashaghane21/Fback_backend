@@ -598,5 +598,26 @@ router.post("/fbacksemyr", async (req, res) => {
     })
 })
 
+router.post("/feedbackbysem", async (req, res) => {
+    const { dep, year, sem1, sem2, sem3, sem4, sem5, sem6 } = req.body;
+
+    try {
+        const sem1 = await fmodel.countDocuments({ department: dep, sem: sem1, year: year });
+        const sem2 = await fmodel.countDocuments({ department: dep, sem: sem2, year: year });
+        const sem3 = await fmodel.countDocuments({ department: dep, sem: sem3, year: year });
+        const sem4 = await fmodel.countDocuments({ department: dep, sem: sem4, year: year });
+        const sem5 = await fmodel.countDocuments({ department: dep, sem: sem5, year: year });
+        const sem6 = await fmodel.countDocuments({ department: dep, sem: sem6, year: year });
+
+
+
+        return res.status(200).send({
+            sem1, sem2, sem3, sem4, sem5, sem6
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send({ error: "Internal Server Error" });
+    }
+});
 
 module.exports = router;
