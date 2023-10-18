@@ -697,7 +697,7 @@ router.post("/semesters/enable", async (req, res) => {     //to enable semester
     try {
         const { id } = req.body
         const sem = await semmodel.findByIdAndUpdate(id, { enabled: true }, { new: true });
-        return res.status.send({ success: true, sem });
+        return res.status(200).send({ success: true, sem });
     } catch (error) {
         return res.status(500).send({ success: false, error: error.message });
     }
@@ -707,7 +707,7 @@ router.post("/semesters/disable", async (req, res) => {
     try {
         const { id } = req.body
         const sem = await semmodel.findByIdAndUpdate(id, { enabled: false }, { new: true });
-        return res.status.send({ success: true, sem });
+        return res.status(200).send({ success: true, sem });
     } catch (error) {
         return res.status(500).send({ success: false, error: error.message });
     }
