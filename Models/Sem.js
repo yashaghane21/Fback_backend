@@ -7,6 +7,9 @@ const semschema = new mongoose.Schema({
     }, department: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Department"
+    }, enabled: {
+        type: Boolean,
+        default: true
     }
 });
 
