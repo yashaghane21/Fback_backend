@@ -620,4 +620,38 @@ router.post("/feedbackbysem", async (req, res) => {
     }
 });
 
+
+router.post("/typebysem", async (req, res) => {                                                       //type feedback by sem like good bad 
+    const { year, sem } = req.body;
+
+    try {
+        const good = await fmodel.countDocuments({ sem: sem, year: year, "feedback.answer": "good😃" });
+        const average = await fmodel.countDocuments({ sem: sem, year: year, "feedback.answer": "average🙂" });
+        const belowaverage = await fmodel.countDocuments({ sem: sem, year: year, "feedback.answer": "below average🙂" });
+
+        const responsedata = [
+            {
+                name: "Good",
+                pv: good,
+            },
+            {
+                name: "Average",
+                pv: average,
+            },
+            {
+                name: "Below Average",
+                pv: belowaverage,
+            }
+        ];
+
+
+        return res.status(200).send({
+            responsedata
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send({ error: "Internal Server Error" });
+    }
+});
+
 module.exports = router;
