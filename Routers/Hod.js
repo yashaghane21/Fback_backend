@@ -693,7 +693,7 @@ router.post("/searchfback", async (req, res) => {
 
 
 
-router.post("/semesters/enable/:id", async (req, res) => {     //to enable semester
+router.post("/semesters/enable", async (req, res) => {     //to enable semester
     try {
         const { id } = req.body
         const sem = await semmodel.findByIdAndUpdate(id, { enabled: true }, { new: true });
@@ -703,7 +703,7 @@ router.post("/semesters/enable/:id", async (req, res) => {     //to enable semes
     }
 });
 
-router.post("/semesters/disable/:id", async (req, res) => {
+router.post("/semesters/disable", async (req, res) => {
     try {
         const { id } = req.body
         const sem = await semmodel.findByIdAndUpdate(id, { enabled: false }, { new: true });
