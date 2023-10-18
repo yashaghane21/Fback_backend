@@ -46,7 +46,7 @@ router.post("/subjects", async (req, res) => {
     try {
         const { sem } = req.body;
         console.log(sem)
-        const subjects = await cmodel.find({ sem: sem }).populate("teacher");
+        const subjects = await cmodel.find({ sem: sem }).populate("teacher").populate("sem");
         console.log(subjects);
         return res.status(200).send({
             subjects,
