@@ -654,4 +654,36 @@ router.post("/typebysem", async (req, res) => {                                 
     }
 });
 
+
+
+router.post("/searchfback", async (req, res) => {
+    try {
+        const { search } = req.body;
+        const users = await usermodel.find({ name: { $regex: ".*" + search + ".*", $options: "i" } });
+        const courses = await coursemodel.find({ name: { $regex: ".*" + search + ".*", $options: "i" } });
+        const userIds = users.map(user => user._id);
+        const courseIds = courses.map(course => course._id);
+
+        const result = await fmodel.find({
+            $or: [
+                { department: { $regex: ".*" + search + ".*", $options: "i" } },
+                { sem: { $regex: ".*" + search + ".*", $options: "i" } },
+                { course: { $in: courseIds } },
+                { student: { $in: userIds } },
+                { 'feedback.question': { $regex: ".*" + search + ".*", $options: "i" } },
+                { 'feedback.answer': { $regex: ".*" + search + ".*", $options: "i" } },
+                { year: { $regex: ".*" + search + ".*", $options: "i" } }
+            ]
+        })
+
+        console.log(result)
+        return res.status(200).send({
+            success: true,
+            result
+        })
+
+    } catch (error) {
+
+    }
+})
 module.exports = router;
