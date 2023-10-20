@@ -12,7 +12,7 @@ app.use(cors());
 
 const auth = require("./Routers/Auth")
 const student = require("./Routers/student")
-const hod = require("./Routers/Hod")
+const hod = require("./Routers/Admin")
 
 
 app.use("/api/v1", auth)

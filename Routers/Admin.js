@@ -703,6 +703,8 @@ router.post("/semesters/enable", async (req, res) => {     //to enable semester
     }
 });
 
+
+
 router.post("/semesters/disable", async (req, res) => {
     try {
         const { id } = req.body
@@ -710,6 +712,32 @@ router.post("/semesters/disable", async (req, res) => {
         return res.status(200).send({ success: true, sem });
     } catch (error) {
         return res.status(500).send({ success: false, error: error.message });
+    }
+});
+
+
+router.post("/depfback", async (req, res) => {
+    const { dep } = req.body;
+    try {
+        const good = await fmodel.find({ "feedback.answer": "good😃", department: dep }).count()
+        const average = await fmodel.find({ "feedback.answer": "average🙂", department: dep }).count()
+        const belowaverage = await fmodel.find({ "feedback.answer": "below average🙂", department: dep }).count()
+
+        const responsedata = [
+            { name: "Good", value: good },
+            { name: "average", value: average },
+            { name: "below average", value: belowaverage }
+
+        ];
+
+        return res.status(200).send({
+            responsedata
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send({
+            error: "Internal Server Error"
+        });
     }
 });
 module.exports = router;
