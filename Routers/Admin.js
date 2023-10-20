@@ -740,4 +740,32 @@ router.post("/depfback", async (req, res) => {
         });
     }
 });
+
+
+
+
+router.post("/depeeback", async (req, res) => {   //for encourse
+    const { dep } = req.body;
+    try {
+        const good = await ecfemodel.find({ "feedback.answer": "good😃", department: dep }).count()
+        const average = await ecfemodel.find({ "feedback.answer": "average🙂", department: dep }).count()
+        const belowaverage = await ecfemodel.find({ "feedback.answer": "below average🙂", department: dep }).count()
+
+        const responsedata = [
+            { name: "Good", value: good },
+            { name: "average", value: average },
+            { name: "below average", value: belowaverage }
+
+        ];
+
+        return res.status(200).send({
+            responsedata
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send({
+            error: "Internal Server Error"
+        });
+    }
+});
 module.exports = router;
