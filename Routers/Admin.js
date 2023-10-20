@@ -768,4 +768,37 @@ router.post("/depeeback", async (req, res) => {   //for encourse
         });
     }
 });
+
+router.get("/depsfback", async (req, res) => {
+    try {
+        const departments = await departmentmodel.find();
+
+        const responseData = [];
+
+        for (const department of departments) {
+            const good = await fmodel.find({ "feedback.answer": "good😃", department: department._id }).count();
+            const average = await fmodel.find({ "feedback.answer": "average🙂", department: department._id }).count();
+            const belowaverage = await fmodel.find({ "feedback.answer": "below average🙂", department: department._id }).count();
+
+            const departmentData = {
+                name: department.name,
+                good: good,
+                average: average,
+                belowaverage: belowaverage
+            };
+
+            responseData.push(departmentData);
+        }
+
+        return res.status(200).send({
+            responseData
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send({
+            error: "Internal Server Error"
+        });
+    }
+});
+
 module.exports = router;
