@@ -784,7 +784,8 @@ router.get("/depsfback", async (req, res) => {
                 name: department.name,
                 good: good,
                 average: average,
-                belowaverage: belowaverage
+                belowaverage: belowaverage,
+                hod:department.hod
             };
 
             responseData.push(departmentData);
