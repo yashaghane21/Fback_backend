@@ -785,7 +785,7 @@ router.get("/depsfback", async (req, res) => {
                 good: good,
                 average: average,
                 belowaverage: belowaverage,
-                hod:department.hod
+                hod: department.hod
             };
 
             responseData.push(departmentData);
@@ -800,6 +800,16 @@ router.get("/depsfback", async (req, res) => {
             error: "Internal Server Error"
         });
     }
+});
+
+
+router.delete("/dep/:id", async (req, res) => {
+    const { id } = req.params
+    const response = await departmentmodel.findByIdAndDelete(id)
+    return res.status(200).send({
+        response,
+        success: true
+    })
 });
 
 module.exports = router;
