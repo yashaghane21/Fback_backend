@@ -9,6 +9,11 @@ app.use(cors());
 // app.use(express.json());
 
 
+app.use(cors({
+  origin: 'http://localhost:5173', // Allow requests from this origin
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Allow specified methods
+  credentials: true // Allow credentials (cookies, authorization headers, etc.)
+}));
 
 const auth = require("./Routers/Auth")
 const student = require("./Routers/student")
