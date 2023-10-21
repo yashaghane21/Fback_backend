@@ -8,7 +8,7 @@ const Deptschema = new mongoose.Schema({
     hod: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "user",
-        default: "xxx"
+        default: null
     }
 
 });
