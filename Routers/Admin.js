@@ -838,4 +838,27 @@ router.delete("/hod/:id", async (req, res) => {
     })
 });
 
+
+router.put("/updatehod", async (req, res) => {
+    try {
+        const { name, email, phone, dob, gender, id } = req.body;
+
+        const updated = await usermodel.findByIdAndUpdate(id, {
+            name: name, email: email, phone: phone, gender: gender, dob: dob
+        });
+
+
+        return res.status(200).send({
+            success: true,
+            updated
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send({
+            success: false,
+            message: "Internal server error"
+        });
+    }
+});
+
 module.exports = router;
