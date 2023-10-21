@@ -508,7 +508,10 @@ router.put("/uphod", async (req, res) => {
     const updated = await departmentmodel.findByIdAndUpdate(id, {
         hod: value
     });
-    return res.status(201).send({ success: true, updated });
+    const u = await usermodel.findByIdAndUpdate(value, {
+        department: id
+    })
+    return res.status(201).send({ success: true, updated, u });
 
 })
 
