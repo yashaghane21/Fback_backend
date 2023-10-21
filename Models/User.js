@@ -29,6 +29,12 @@ const userschema = new mongoose.Schema({
     }, sem: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "sem"
+    },
+    gender: {
+        type: String,
+        default: "male"
+    }, dob: {
+        type: Date
     }
 });
 
