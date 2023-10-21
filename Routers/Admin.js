@@ -812,4 +812,16 @@ router.delete("/dep/:id", async (req, res) => {
     })
 });
 
+
+router.put("/udept", async (req, res) => {
+    const { value, id } = req.body
+    const ut = await departmentmodel.findByIdAndUpdate(id, {
+        hod: value
+    });
+    return res.status(200).send({
+        success: true,
+        ut
+    })
+});
+
 module.exports = router;

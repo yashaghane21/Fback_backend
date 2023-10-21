@@ -5,11 +5,12 @@ const Deptschema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    hod:{
+    hod: {
         type: mongoose.Schema.Types.ObjectId,
-        ref:"user"
+        ref: "user",
+        default: "xxx"
     }
-    
+
 });
 
 const Department = mongoose.model("Department", Deptschema);
