@@ -827,4 +827,15 @@ router.put("/udept", async (req, res) => {
     })
 });
 
+
+router.delete("/hod/:id", async (req, res) => {
+    const { id } = req.params
+    const response = await usermodel.findByIdAndDelete(id)
+    return res.status(200).send({
+        success: true,
+        response,
+
+    })
+});
+
 module.exports = router;
