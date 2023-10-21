@@ -125,7 +125,7 @@ router.post('/ecfeedback', async (req, res) => {
 
 
 router.get("/hods", async (req, res) => {
-    const hods = await usermodel.find({ role: 1 });
+    const hods = await usermodel.find({ role: 1 }).populate("department");
     return res.status(200).send({
         success: true,
         hods
