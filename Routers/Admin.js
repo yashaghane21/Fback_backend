@@ -15,8 +15,8 @@ const validator = require("validator")
 
 router.post("/department", async (req, res) => {
     try {
-        const { name, hod } = req.body
-        const dept = new departmentmodel({ name, hod });
+        const { name } = req.body
+        const dept = new departmentmodel({ name });
         await dept.save();
         return res.status(200).send({
             success: true,
