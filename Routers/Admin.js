@@ -861,4 +861,54 @@ router.put("/updatehod", async (req, res) => {
     }
 });
 
+
+
+
+router.post("/depsyear", async (req, res) => {   //for encourse
+    const { dep, year1, year2, year3 } = req.body;
+    try {
+        const good1 = await fmodel.find({ "feedback.answer": "good😃", department: dep, year: year1 }).count()
+        const average1 = await fmodel.find({ "feedback.answer": "average🙂", department: dep, year: year1 }).count()
+        const belowaverage1 = await fmodel.find({ "feedback.answer": "below average🙂", department: dep, year: year1 }).count()
+
+        const good2 = await fmodel.find({ "feedback.answer": "good😃", department: dep, year: year2 }).count()
+        const average2 = await fmodel.find({ "feedback.answer": "average🙂", department: dep, year: year2 }).count()
+        const belowaverage2 = await fmodel.find({ "feedback.answer": "below average🙂", department: dep, year: year2 }).count()
+
+        const good3 = await fmodel.find({ "feedback.answer": "good😃", department: dep, year: year3 }).count()
+        const average3 = await fmodel.find({ "feedback.answer": "average🙂", department: dep, year: year3 }).count()
+        const belowaverage3 = await fmodel.find({ "feedback.answer": "below average🙂", department: dep, year: year3 }).count()
+
+        const responsedata = [
+            {
+                name: year1,
+                uv: good1,
+                pv: average1,
+                sv: belowaverage1
+            },
+            {
+                name: year2,
+                uv: good2,
+                pv: average2,
+                sv: belowaverage2
+            },
+            {
+                name: year3,
+                uv: good3,
+                pv: average3,
+                sv: belowaverage3
+            }
+        ];
+
+
+        return res.status(200).send({
+            responsedata
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send({
+            error: "Internal Server Error"
+        });
+    }
+});
 module.exports = router;
