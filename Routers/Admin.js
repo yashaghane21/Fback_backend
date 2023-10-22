@@ -90,7 +90,7 @@ router.post("/question", async (req, res) => {
 
 router.get("/feedback/:sem", async (req, res) => {
     const { sem } = req.params
-    const feedback = await fmodel.find({ sem: sem }).populate("student").populate("course").populate("sem")
+    const feedback = await fmodel.find({ sem: sem }).populate("student").populate("course").populate("sem").populate("department").populate("feedback.question")
     return res.status(200).send({
         feedback
     })
