@@ -65,9 +65,9 @@ router.post("/subjects", async (req, res) => {
 router.post('/feedback', async (req, res) => {
     const { feedback, department, sem, course, student } = req.body;
 
-    const already = await fmodel.find({ student, course, sem });
+    const cf = await fmodel.findOne({ course, sem, student });
 
-    if (already) {
+    if (cf) {
         return res.status(400).json({ message: 'Feedback already submitted', success: false });
     }
 
