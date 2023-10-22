@@ -882,21 +882,21 @@ router.post("/depsyear", async (req, res) => {   //for encourse
         const responsedata = [
             {
                 name: year1,
-                uv: good1,
-                pv: average1,
-                sv: belowaverage1
+                good: good1,
+                average: average1,
+                belowaverage: belowaverage1
             },
             {
                 name: year2,
-                uv: good2,
-                pv: average2,
-                sv: belowaverage2
+                good: good2,
+                average: average2,
+                belowaverage: belowaverage2
             },
             {
                 name: year3,
-                uv: good3,
-                pv: average3,
-                sv: belowaverage3
+                good: good3,
+                average: average3,
+                belowaverage: belowaverage3
             }
         ];
 
