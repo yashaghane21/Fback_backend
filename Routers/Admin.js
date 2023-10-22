@@ -595,7 +595,7 @@ router.delete("/semdel/:id", async (req, res) => {
 
 router.post("/fbacksemyr", async (req, res) => {
     const { sem, year } = req.body
-    const feedback = await fmodel.find({ sem: sem, year: year }).populate("student").populate("course")
+    const feedback = await fmodel.find({ sem: sem, year: year }).populate("student").populate("course").populate("sem")
     return res.status(200).send({
         feedback
     })
