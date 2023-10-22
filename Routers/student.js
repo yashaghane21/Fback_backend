@@ -63,7 +63,13 @@ router.post("/subjects", async (req, res) => {
 
 
 router.post('/feedback', async (req, res) => {
-    const { feedback, subject, department, sem, course, student } = req.body;
+    const { feedback, department, sem, course, student } = req.body;
+
+    const already = await fmodel.find({ student, course, sem });
+
+    if (already) {
+        return res.status(400).json({ message: 'Feedback already submitted', success: false });
+    }
 
     try {
         const newFeedback = new fmodel({ department, sem, course, student, feedback });
@@ -112,6 +118,11 @@ router.post('/ecfeedback', async (req, res) => {
     const { feedback, department, student } = req.body;
 
     try {
+        const already = await fmodel.find({ student });
+
+        if (already) {
+            return res.status(400).json({ message: 'Feedback already submitted', success: false });
+        }
         const newFeedback = new ecmodel({ department, student, feedback });
 
         await newFeedback.save();
