@@ -117,10 +117,11 @@ router.get("/ecques", async (req, res) => {
 router.post('/ecfeedback', async (req, res) => {
     const { feedback, department, student } = req.body;
 
-    try {
-        const already = await fmodel.find({ student });
 
-        if (already) {
+    try {
+        const cf = await ecmodel.findOne({ student });
+
+        if (cf) {
             return res.status(400).json({ message: 'Feedback already submitted', success: false });
         }
         const newFeedback = new ecmodel({ department, student, feedback });
